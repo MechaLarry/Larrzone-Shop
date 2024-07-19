@@ -9,7 +9,8 @@ Search Functionality: Allows users to search for products based on title and des
 Checkout Process: Users can proceed to checkout, choose a payment method, and submit payment information.
 Dark Mode: Users can toggle dark mode, with their preference saved in local storage.
 
-Save the project to your local device with git clone (ssh key)
+fork the project to your repo
+Save the project to your local device with "git clone (ssh key)"
 Open the project with VS code
 You can view the project presentation in the documents folder in the solution
 Press the "go live" button at the bottom left of the vs code application
