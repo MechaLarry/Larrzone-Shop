@@ -24,11 +24,33 @@ document.addEventListener("DOMContentLoaded", function() {
                         <p class="card-description">${product.description}</p>
                         <p class="card-price">$${product.price}</p>
                         <button class="btn btn-primary add-to-cart" data-id="${product.id}" data-name="${product.title}" data-price="${product.price}">Add to Cart</button>
+                        <div class="comments-section mt-3">
+                            <h6>Comments</h6>
+                            <div id="comments-list-${product.id}" class="comments-list"></div>
+                            <form id="comment-form-${product.id}" class="comment-form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Name" id="comment-name-${product.id}" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Your Comment" id="comment-text-${product.id}" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit Comment</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             `;
 
             productList.appendChild(productCard);
+
+            // Add event listener for comment form submission
+            const commentForm = document.getElementById(`comment-form-${product.id}`);
+            commentForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const name = document.getElementById(`comment-name-${product.id}`).value;
+                const commentText = document.getElementById(`comment-text-${product.id}`).value;
+                addComment(product.id, name, commentText);
+            });
         });
 
         // Add event listeners to "Add to Cart" buttons
@@ -36,6 +58,21 @@ document.addEventListener("DOMContentLoaded", function() {
         addToCartButtons.forEach(button => {
             button.addEventListener('click', addToCart);
         });
+    }
+
+    // Function to add comments
+    function addComment(productId, name, commentText) {
+        const commentsList = document.getElementById(`comments-list-${productId}`);
+        const commentElement = document.createElement('div');
+        commentElement.classList.add('comment');
+        commentElement.innerHTML = `
+            <strong>${name}</strong>: ${commentText}
+        `;
+        commentsList.appendChild(commentElement);
+
+        // Optionally, clear the form fields after submission
+        document.getElementById(`comment-name-${productId}`).value = '';
+        document.getElementById(`comment-text-${productId}`).value = '';
     }
 
     // Function to initialize the cart

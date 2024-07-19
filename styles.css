@@ -74,3 +74,19 @@ body {
     height: auto;
     border-radius: 50%;
 }
+.comments-section {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.comment-form {
+    margin-top: 10px;
+}
+
+.comment {
+    margin-bottom: 10px;
+}
+
+.comment strong {
+    display: block;
+}
